@@ -1,0 +1,28 @@
+@import url(./reset.css);
+@import url(./main.css);
+@import url(./login.css);
+
+:root {
+    font-size: 62.5%;
+    --principal-font: 'Dosis', sans-serif;
+    --light-gray: #dddddd;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: var(--principal-font);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    width: 100vw;
+    padding: 20px;
+}
+
+/* global box */
+
+/* hide */
+.hide {
+    display: none;
+}
