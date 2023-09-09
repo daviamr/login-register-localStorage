@@ -10,3 +10,47 @@ button {
     width: 100%;
     padding: 3px;
 }
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 380px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+}
+
+.li_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    background-color: rgb(209, 209, 209);
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.remove {
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+.remove:hover {
+    background-color: red;
+    border-radius: 50%;
+}
