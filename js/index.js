@@ -2,6 +2,7 @@ const user = document.getElementById('user_register_id');
 const pass = document.getElementById('user_register_pass');
 const form = document.getElementById('form');
 const acc_section = document.getElementById('acc_section');
+const item_list = document.getElementsByClassName('remove');
 
 const data = JSON.parse(localStorage.getItem('acc_data')) || [];
 data.forEach(element => {
@@ -21,7 +22,7 @@ form.addEventListener('submit', (e) => {
     if (userValue === '' || passValue === '') {
         alert('Preencha corretamente.')
         return
-    };
+    }
 
     for (i = 0; i < data.length; i++) {
         if (userValue === data[i].usuario) {
@@ -32,7 +33,6 @@ form.addEventListener('submit', (e) => {
 
     if (exist === false) {
         createAccount();
-        removeAccount();
     }
 
     user.value = '';
@@ -41,11 +41,19 @@ form.addEventListener('submit', (e) => {
 
 function showAccount(user, pass, id) {
     const itemList = document.createElement('li');
-    itemList.classList.add('li_item')
+    itemList.classList.add('li_item');
     const itemListSpan = document.createElement('img');
     itemListSpan.classList.add('remove');
-    itemListSpan.setAttribute('src', './img/close.svg')
+    itemListSpan.setAttribute('src', './img/close.svg');
     itemList.innerHTML += `ID: ${id} | Usuário: ${user} / Senha: ${pass}`;
+
+    //Removendo conta
+    itemListSpan.addEventListener('click', () => {
+        itemList.remove();
+        data.splice(this, 1);
+        updateBank();
+        console.log(data);
+    })
 
     itemList.appendChild(itemListSpan);
     acc_section.appendChild(itemList);
@@ -59,7 +67,7 @@ function createAccount() {
     }
 
     data.push(newUser);
-    updateBank()
+    updateBank();
     showAccount(newUser.usuario, newUser.senha, newUser.id);
 }
 
@@ -68,15 +76,14 @@ function updateBank() {
     localStorage.setItem('acc_data', JSON.stringify(data));
 }
 
-const item_list = document.getElementsByClassName('remove');
-function removeAccount() {
-    for (i = 0; i < item_list.length; i++) {
-        item_list[i].addEventListener('click', (e) => {
-            let target = e.target
-            target.parentNode.remove();
-            data.splice(target, 1)
-            updateBank();
-        })
-    }
-}
-removeAccount();
+// function removeAccount() {
+//     for (i = 0; i < item_list.length; i++) {
+//         item_list[i].addEventListener('click', (e) => {
+//             let target = e.target
+//             target.parentNode.remove();
+//             data.splice(target, 1)
+//             updateBank();
+//         })
+//     }
+// }
+// removeAccount();
